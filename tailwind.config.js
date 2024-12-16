@@ -5,7 +5,16 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        jost: ["Jost", "sans-serif"],
+        lobster: ["Lobster", "sans-serif"],
+        worksans: ["Work Sans", "serif"],
+        lato: ["Lato", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
+      }
+    },
   },
   plugins: [],
 }
