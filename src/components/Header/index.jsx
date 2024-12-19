@@ -13,7 +13,7 @@ function Header() {
     <header className='fixed w-full z-10 max-h-[60px] bg-white px-2 py-1 border border-b-gray-200 shadow-sm shadow-gray-200'>
       <nav className='flex flex-row justify-between'>
         <a
-          onClick={() => navigate('/products')}
+          onClick={() => navigate('/')}
           className='cursor-pointer'
         >
           <svg className='text-gray-800' xmlns="http://www.w3.org/2000/svg" width="2em" height="3em" viewBox="0 0 20 20" >

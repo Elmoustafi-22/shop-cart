@@ -31,7 +31,7 @@ function CartListPage() {
           </ul>
           <div className='mt-5 flex gap-2'>
             <button disabled={cartItems.length === 0} className='font-lato text-sm px-4 py-3 bg-black text-white font-extrabold rounded-lg disabled:opacity-55'>Checkout</button>
-            <button onClick={() => navigate('/products')} className='font-lato text-sm px-4 py-3 bg-black text-white font-extrabold rounded-lg'>Continue shopping</button>
+            <button onClick={() => navigate('/')} className='font-lato text-sm px-4 py-3 bg-black text-white font-extrabold rounded-lg'>Continue shopping</button>
           </div>
         </div>
       </div>
