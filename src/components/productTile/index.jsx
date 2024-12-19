@@ -1,9 +1,14 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { ShoppingCartContext } from "../../context";
+import { toast } from "react-toastify";
 
 
 function ProductTile({singleProductTile}){
 
     const navigate = useNavigate()
+
+    const {handleAddToCart, cartItems} = useContext(ShoppingCartContext)
 
     function handleNavigateToProductDetailsPage(productId) {
         navigate(`/product-details/${productId}`)
@@ -30,6 +35,15 @@ function ProductTile({singleProductTile}){
                 onClick={() => handleNavigateToProductDetailsPage(singleProductTile?.id)}
                 className="px-5 mt-5 w-full py-2 rounded-none text-lato font-bold text-lg bg-black text-white">
                 View details
+            </button>
+            <button 
+                
+                onClick={() => {
+                    handleAddToCart(singleProductTile)
+                    toast.success("Added to cart!")
+                }}
+                className=" px-5 mt-5 w-full py-2 rounded-none text-lato font-bold text-lg bg-black text-white">
+                Add to cart
             </button>
         </div>
     )

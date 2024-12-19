@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ShoppingCartContext } from '../../context';
+import { toast } from 'react-toastify';
 
 function ProductDetailsPage() {
   const {id} = useParams();
@@ -10,9 +11,9 @@ function ProductDetailsPage() {
       loading, 
       setLoading,
       handleAddToCart,
+      cartItems
     } = useContext(ShoppingCartContext)
 
-  const navigate = useNavigate()
 
   async function fetchProductDetails() {
     try{
@@ -75,8 +76,11 @@ function ProductDetailsPage() {
             </div>
             <div>
               <button 
-                onClick={() => handleAddToCart(productDetails)}
-                className='mt-5 rounded font-lato min-w-[200px] px-4 py-3 border border-[#333] bg-transparent text-sm font-semibold'
+                onClick={() => {
+                  handleAddToCart(productDetails)
+                  toast.success("Items added to cart!")
+                }}
+                className=' mt-5 rounded font-lato min-w-[200px] px-4 py-3 border border-[#333] bg-transparent text-sm font-semibold'
               >
                 Add to Cart
               </button>

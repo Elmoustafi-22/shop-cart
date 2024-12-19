@@ -26,7 +26,7 @@ function ProductListPage() {
         <div className='mt-10 lg:mt-16 grid grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-8'>
           {
             productList && productList.length > 0 ?
-            productList.map(singleProductTile => <ProductTile singleProductTile={singleProductTile}/>)
+            productList.map(singleProductTile => <ProductTile key={singleProductTile?.id} singleProductTile={singleProductTile}/>)
             : <h3>No products</h3>
           }
         </div>

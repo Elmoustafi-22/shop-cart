@@ -36,17 +36,40 @@ export default function ShoppingCartProvider({children}){
                 totalPrice : cartProduct?.price
             }) 
         } else {
-            console.log('its here')
+            existingCartItems[findIndexOfCurrentItem] = {
+                ...existingCartItems[findIndexOfCurrentItem],
+                quantity : existingCartItems[findIndexOfCurrentItem].quantity + 1,
+                totalPrice : (existingCartItems[findIndexOfCurrentItem].quantity  + 1)* existingCartItems[findIndexOfCurrentItem].price
+            }
         }
         setCartItems(existingCartItems)
         localStorage.setItem('cartItems', JSON.stringify(existingCartItems));
         navigate('/cart')
+        
+    }
+
+    function handleRemoveFromCart(getProductDetails, isFullRemove){
+        let existingCartItems = [...cartItems]
+        const indexOfCartItem = existingCartItems.findIndex(item => item.id === getProductDetails.id)
+
+        if(isFullRemove){
+            existingCartItems.splice(indexOfCartItem, 1)
+        } else {
+            existingCartItems[indexOfCartItem] = {
+                ...existingCartItems[indexOfCartItem],
+                quantity : existingCartItems[indexOfCartItem].quantity - 1,
+                totalPrice: (existingCartItems[indexOfCartItem].quantity - 1) * existingCartItems[indexOfCartItem].price
+            }
+        }
+        localStorage.setItem('cartItems', JSON.stringify(existingCartItems))
+        setCartItems(existingCartItems)
     }
 
     useEffect(() => {
         fetchListOfProducts();
+        setCartItems(JSON.parse(localStorage.getItem('cartItems') || []))
     }, [])
-
+    
     return (
         <ShoppingCartContext.Provider value={{
             productList, 
@@ -56,6 +79,7 @@ export default function ShoppingCartProvider({children}){
             setProductDetails,
             handleAddToCart,
             cartItems,
+            handleRemoveFromCart,
             }}
         >
             {children}
